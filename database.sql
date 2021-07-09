@@ -8,3 +8,14 @@ CREATE TABLE users
     email VARCHAR(300),
     PASSWORD VARCHAR(100)
 );
+
+CREATE TABLE appointments
+(
+    appointment_id SERIAL PRIMARY KEY,
+    firstname VARCHAR(150),
+    lastname VARCHAR(150),
+    phone VARCHAR(128),
+    email VARCHAR(300),
+    date DATE NOT NULL,
+    description VARCHAR(255)
+);
