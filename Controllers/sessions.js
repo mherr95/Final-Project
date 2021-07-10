@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcryptjs");
 
 router.get("/create-session", (req, res) => {
   req.session.user = "mike";
@@ -31,6 +32,15 @@ router.get("/delete-session", (req, res) => {
       console.log("session removed sucessfully");
     }
   });
+  res.redirect("/users");
+});
+
+router.get("/test-bcrypt", (req, res) => {
+  const hashedString = bcrypt.hashSync("password", bcrypt.genSaltSync(10));
+  console.log(hashedString);
+  const samePassword = bcrypt.compareSync("wrongPassword", hashedString);
+  console.log(samePassword);
+
   res.redirect("/users");
 });
 
