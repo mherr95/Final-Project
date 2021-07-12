@@ -4,9 +4,9 @@ CREATE DATABASE users_database;
 CREATE TABLE users
 (
     user_id SERIAL PRIMARY KEY,
-    username VARCHAR(255) UNIQUE,
-    email VARCHAR(300) UNIQUE,
-    PASSWORD VARCHAR(100)
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(300) NOT NULL,
+    PASSWORD VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE appointments

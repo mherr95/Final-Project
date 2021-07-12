@@ -1,8 +1,19 @@
 const express = require("express");
 const router = express.Router();
-
-//import model from db.js
+const bcrypt = require("bcrypt");
 const pool = require("../db");
+// const jwt = require("../jwt");
+
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+
+function jwtGenerator(user_id) {
+  const payload = {
+    user: user_id,
+  };
+
+  return jwt.sign(payload, process.env.SECRET, { expiresIn: 60 * 60 });
+}
 
 /////////// Routes ////////////
 
@@ -36,12 +47,26 @@ router.post("/register", async (req, res) => {
     const { username } = req.body;
     const { email } = req.body;
     const { password } = req.body;
+
+    const user = await pool.query("SELECT * FROM users WHERE email = $1", [
+      email,
+    ]);
+
+    if (user.rows.length !== 0) {
+      return res.status(401).send("User already exist");
+    }
+
+    const saltRound = 10;
+    const salt = await bcrypt.genSalt(saltRound);
+    const bcryptPassword = await bcrypt.hash(password, salt);
+
     const newUser = await pool.query(
       "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *",
-      [username, email, password]
+      [username, email, bcryptPassword]
     );
-    console.log(req.body);
-    res.json(newUser.rows[0]);
+
+    const token = jwtGenerator(newUser.rows[0].user_id);
+    res.json({ token });
   } catch (err) {
     console.log(err);
   }
