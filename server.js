@@ -8,6 +8,8 @@ require("dotenv").config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+////
+
 const whitelist = [
   "http://localhost:3000",
   "https://silly-beaver-62d637.netlify.app",
