@@ -50,7 +50,7 @@ router.post("/newAppointment", async (req, res) => {
   }
 });
 
-//Update user//
+//Update appointment//
 router.put("/appointments/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -72,7 +72,7 @@ router.put("/appointments/:id", async (req, res) => {
   }
 });
 
-//Delete user//
+//Delete appointment//
 router.delete("/appointments/:id", async (req, res) => {
   try {
     const { id } = req.params;

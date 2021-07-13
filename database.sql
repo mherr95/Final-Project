@@ -19,3 +19,9 @@ CREATE TABLE appointments
     date VARCHAR(100),
     description VARCHAR(255)
 );
+
+
+INSERT INTO appointments
+    (appointment_id, firstname, lastname, phone, email, date, description)
+VALUES
+    (1, "Mike", "Herr", "000-000-0000", "email@email.com", "07/15/21", "Braces");
