@@ -10,11 +10,7 @@ const developmentConfig = {
 };
 
 const productionConfig = {
-  connectionString:
-    "postgres://snkyvrqveintpc:423729d9a59e3d34c871111633cd63654fc8995b09ff36415a0e0a208fc6fb0b@ec2-52-5-1-20.compute-1.amazonaws.com:5432/dqe9mfsg19qsk",
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  connectionString: process.env.DATABASE_URL,
 };
 
 console.log(productionConfig);
