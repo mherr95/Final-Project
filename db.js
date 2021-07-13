@@ -14,8 +14,8 @@ const productionConfig = {
 };
 
 const pool = new Pool(
-  // process.env.NODE_ENV === "production" ? productionConfig : developmentConfig
-  developmentConfig
+  process.env.NODE_ENV === "production" ? productionConfig : developmentConfig
+  // developmentConfig
 );
 
 module.exports = pool;
