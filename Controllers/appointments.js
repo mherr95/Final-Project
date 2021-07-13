@@ -43,7 +43,7 @@ router.post("/newAppointment", async (req, res) => {
       "INSERT INTO appointments (firstname, lastname, phone, email, date, description) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
       [firstname, lastname, phone, email, date, description]
     );
-    console.log(req.body);
+    console.log(req.body.description);
     res.json(newAppointment.rows[0]);
   } catch (err) {
     console.log(err);
