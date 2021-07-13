@@ -1,5 +1,6 @@
 require("dotenv").config();
 const Pool = require("pg").Pool;
+pool.default.ssl = true;
 
 const developmentConfig = {
   user: process.env.DB_USER,
