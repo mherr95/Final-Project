@@ -22,6 +22,6 @@ CREATE TABLE appointments
 
 
 INSERT INTO appointments
-    (appointment_id, firstname, lastname, phone, email, date, description)
+    (firstname, lastname, phone, email, date, description)
 VALUES
-    (1, "Mike", "Herr", "000-000-0000", "email@email.com", "07/15/21", "Braces");
+    ('Mike', 'Herr', '000-000-0000', 'email@email.com', '07/15/21', 'Braces');
