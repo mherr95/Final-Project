@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const pool = require("../dbConfig");
+const pool = require("../db");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
