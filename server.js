@@ -1,4 +1,5 @@
 const express = require("express");
+const pool = require("./dbConfig");
 const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -8,7 +9,9 @@ require("dotenv").config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-////
+const DATABASE_URL = process.env.DATABASE_URL;
+
+pool.connect(DATABASE_URL);
 
 const whitelist = [
   "http://localhost:3000",

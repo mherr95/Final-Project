@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 //import model from db.js
-const pool = require("../db");
+const pool = require("../dbConfig");
 
 /////////// Routes ////////////
 

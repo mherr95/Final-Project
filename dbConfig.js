@@ -10,7 +10,7 @@ const developmentConfig = {
 };
 
 const productionConfig = {
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_URL, //from heroku
 };
 
 console.log(productionConfig);
