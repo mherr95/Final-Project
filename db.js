@@ -10,7 +10,10 @@ const developmentConfig = {
 };
 
 const productionConfig = {
-  connectionString: process.env.DATABASE_URL + `?sslmode=require`,
+  connectionString: process.env.DATABASE_URL,
+  // ssl: {
+  //   rejectUnauthorized: false,
+  // },
 };
 
 console.log(productionConfig);

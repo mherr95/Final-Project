@@ -12,6 +12,9 @@ const whitelist = [
   "http://localhost:3000",
   "https://silly-beaver-62d637.netlify.app",
   "https://silly-beaver-62d637.netlify.app/appointments",
+  "https://frozen-journey-70675.herokuapp.com",
+  "https://frozen-journey-70675.herokuapp.com/appointments",
+  "https://frozen-journey-70675.herokuapp.com/newAppointment",
 ];
 const corsOptions = {
   origin: whitelist,
