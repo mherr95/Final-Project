@@ -3,13 +3,13 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const pool = require("../db");
 const jwt = require("jsonwebtoken");
+const validInfo = require("../validInfo.js");
 require("dotenv").config();
 
 function jwtGenerator(user_id) {
   const payload = {
     user: user_id,
   };
-
   return jwt.sign(payload, process.env.SECRET, { expiresIn: 60 * 60 });
 }
 
@@ -39,8 +39,34 @@ router.get("/users/:id", async (req, res) => {
   }
 });
 
+router.post("/login", validInfo, async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await pool.query("SELECT * FROM users WHERE email = $1", [
+      email,
+    ]);
+
+    if (user.rows.length === 0) {
+      return res.status(401).json("password or email inccorect");
+    }
+
+    const validPassword = await bcrypt.compare(password, user.rows[0].password);
+
+    console.log(validPassword);
+    if (!validPassword) {
+      return res.status(401).json("password or email is inncorrect");
+    }
+
+    const token = jwtGenerator(user.rows[0].user_id);
+
+    res.json({ token });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 //create user//
-router.post("/register", async (req, res) => {
+router.post("/register", validInfo, async (req, res) => {
   try {
     const { username } = req.body;
     const { email } = req.body;

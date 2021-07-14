@@ -11,12 +11,7 @@ const developmentConfig = {
 
 const productionConfig = {
   connectionString: process.env.DATABASE_URL,
-  // ssl: {
-  //   rejectUnauthorized: false,
-  // },
 };
-
-console.log(productionConfig);
 
 const pool = new Pool(
   process.env.NODE_ENV === "production" ? productionConfig : developmentConfig
